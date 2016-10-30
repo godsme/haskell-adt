@@ -1,11 +1,19 @@
 {-# LANGUAGE RankNTypes, TypeOperators #-}
 
-module ThreeType where
+module ThreeType
+         ( ThreeType
+         , three_1
+         , three_2
+         , three_3
+         , threeEq ) where
 
 import SUM
 import UNIT
 import BOOL
 
+----------------------------------------------------------
+-- Internal Three Type
+----------------------------------------------------------
 type ThreeType' = UNIT :+: BOOL
 
 three_1' :: ThreeType'
@@ -16,6 +24,7 @@ three_2' = inr true
 
 three_3' :: ThreeType'
 three_3' = inr false
+
 ----------------------------------------------------------
 -- Three Type
 ----------------------------------------------------------
