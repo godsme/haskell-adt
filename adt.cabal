@@ -24,6 +24,7 @@ library
     NAT
     SUM
     PAIR
+    TRIPLE
     LIST
   other-modules:       
     TwoType
