@@ -19,10 +19,10 @@ newtype BOOL = BOOL { unBool :: TwoType }
 -- Constructors
 ----------------------------------------------------------
 true :: BOOL
-true = BOOL one''
+true  = BOOL two_1
 
 false :: BOOL
-false = BOOL two''
+false = BOOL two_2
 
 ----------------------------------------------------------
 -- Operators

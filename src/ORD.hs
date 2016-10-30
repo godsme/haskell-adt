@@ -22,13 +22,13 @@ newtype ORD = ORD { unOrd :: ThreeType }
 -- Constructors
 ----------------------------------------------------------
 eq :: ORD
-eq = ORD one'''
+eq = ORD three_1
 
 lt :: ORD
-lt = ORD two'''
+lt = ORD three_2
 
 gt :: ORD
-gt = ORD three'''
+gt = ORD three_3
 
 ----------------------------------------------------------
 -- Type Class Instances

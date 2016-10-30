@@ -14,11 +14,11 @@ type OneType = forall r. r -> r
 ----------------------------------------------------------
 -- Constructors
 ----------------------------------------------------------
-one' :: OneType
-one' = \x -> x
+one_1 :: OneType
+one_1 = \x -> x
 
 id' :: forall a. a -> a
-id' = one'
+id' = one_1
 
 ----------------------------------------------------------
 -- UNIT Type
@@ -29,4 +29,4 @@ newtype UNIT = UNIT { unUnit :: OneType }
 -- Constructors
 ----------------------------------------------------------
 unit :: UNIT
-unit = UNIT one'
+unit = UNIT one_1
