@@ -9,8 +9,8 @@ import PAIR
 -----------------------------------------
 type TRIPLE a b c = PAIR a (PAIR b c)
 
-triple' :: a -> b -> c -> TRIPLE a b c
-triple' x y z = pair x (pair y z)
+triple :: a -> b -> c -> TRIPLE a b c
+triple x y z = pair x (pair y z)
 
 tri_1 :: TRIPLE a b c -> a
 tri_1 = prj1
