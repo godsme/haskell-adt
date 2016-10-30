@@ -34,10 +34,8 @@ eN n = \z s -> let f k = \m -> m (k s)
 newtype PRTW = PRTW PRType
 
 compareN :: PRType -> PRType -> ORD
-compareN m n = fst $ m (zz, PRTW n) comp
-  where zz = n eq (const lt)
-
-        comp :: (ORD, PRTW) -> (ORD, PRTW)
+compareN m n = fst $ m (n eq (const lt), PRTW n) comp
+  where comp :: (ORD, PRTW) -> (ORD, PRTW)
         comp r@((ORD ord), x@(PRTW xx)) =
           ord (gt, x) (f (eN xx)) r
 
@@ -46,16 +44,24 @@ compareN m n = fst $ m (zz, PRTW n) comp
 
 eqN :: PRType -> PRType -> BOOL
 eqN m n = ordToEq $ compareN m n
------------------------------------------
+
+----------------------------------------------------------
+-- Natural Number Type
+----------------------------------------------------------
 newtype NAT = NAT { unNat :: PRType }
 
+----------------------------------------------------------
+-- Constructors
+----------------------------------------------------------
 z' :: NAT
 z' = NAT oneN
 
 s' :: NAT -> NAT
 s' (NAT n) = NAT (uN n)
 
------------------------------------------
+----------------------------------------------------------
+-- Operators
+----------------------------------------------------------
 zero' :: NAT -> BOOL
 zero' (NAT n) = n true (\x -> false)
 
@@ -70,14 +76,14 @@ plus' (NAT m) (NAT n) =
 pred' :: NAT -> NAT
 pred' (NAT n) = NAT (eN n)
 
------------------------------------------
+----------------------------------------------------------
+-- Type Class Instances
+----------------------------------------------------------
 instance Show NAT where
   show (NAT n) = show $ n 0 (1+)
 
 instance Eq NAT where
-  (NAT m) == (NAT n) =
-    toBool $ eqN m n
+  (NAT m) == (NAT n) = toBool $ eqN m n
 
 instance Ord NAT where
-  compare (NAT m) (NAT n) =
-    ordToOrdering (compareN m n)
+  compare (NAT m) (NAT n) = toOrdering (compareN m n)

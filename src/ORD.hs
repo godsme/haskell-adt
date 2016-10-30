@@ -1,6 +1,14 @@
 {-# LANGUAGE RankNTypes #-}
 
-module ORD where
+module ORD
+  ( ORD (..)
+  , eq
+  , lt
+  , gt
+  , compare'''
+  , toOrdering
+  , ordToEq
+  ) where
 
 import ThreeType
 import BOOL
@@ -34,15 +42,15 @@ instance Eq ORD where
 ----------------------------------------------------------
 -- Utilities
 ----------------------------------------------------------
-compareThree :: ThreeType -> ThreeType -> ORD
-compareThree m n =
+compare''' :: ThreeType -> ThreeType -> ORD
+compare''' m n =
   m (\x -> x eq lt lt)
     (\x -> x gt eq lt)
     (\x -> x gt gt eq)
     n
 
-ordToOrdering :: ORD -> Ordering
-ordToOrdering (ORD ord) = ord EQ LT GT
+toOrdering :: ORD -> Ordering
+toOrdering (ORD ord) = ord EQ LT GT
 
 ordToEq :: ORD -> BOOL
 ordToEq (ORD ord) = ord true false false

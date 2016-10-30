@@ -44,3 +44,12 @@ toBool (BOOL b) = b True False
 ----------------------------------------------------------
 if_then_else :: forall r. BOOL -> r -> r -> r
 if_then_else (BOOL b) t f = b t f
+
+not' :: BOOL -> BOOL
+not' (BOOL b) = BOOL $ \t f -> b f t
+
+and' :: BOOL -> BOOL -> BOOL
+and' (BOOL l) (BOOL r) = BOOL $ \t f -> l (r t f) f
+
+or' :: BOOL -> BOOL -> BOOL
+or' (BOOL l) (BOOL r)  = BOOL $ \t f -> l t (r t f)
