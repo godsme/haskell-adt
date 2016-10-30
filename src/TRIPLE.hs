@@ -5,13 +5,19 @@ module TRIPLE where
 import PAIR
 
 -----------------------------------------
--- Internal Triple Type
+-- Triple Type
 -----------------------------------------
 type TRIPLE a b c = PAIR a (PAIR b c)
 
+-----------------------------------------
+-- Constructors
+-----------------------------------------
 triple :: a -> b -> c -> TRIPLE a b c
 triple x y z = pair x (pair y z)
 
+-----------------------------------------
+-- Operators
+-----------------------------------------
 tri_1 :: TRIPLE a b c -> a
 tri_1 = prj1
 
