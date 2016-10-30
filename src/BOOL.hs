@@ -25,21 +25,6 @@ false :: BOOL
 false = BOOL two''
 
 ----------------------------------------------------------
--- Type Class Instances
-----------------------------------------------------------
-instance Show BOOL where
-  show (BOOL b) = b "true" "false"
-
-instance Eq BOOL where
-  (BOOL m) == (BOOL n) = twoEq m n
-
-----------------------------------------------------------
--- Utilities
-----------------------------------------------------------
-toBool :: BOOL -> Bool
-toBool (BOOL b) = b True False
-
-----------------------------------------------------------
 -- Operators
 ----------------------------------------------------------
 if_then_else :: forall r. BOOL -> r -> r -> r
@@ -53,3 +38,18 @@ and' (BOOL l) (BOOL r) = BOOL $ \t f -> l (r t f) f
 
 or' :: BOOL -> BOOL -> BOOL
 or' (BOOL l) (BOOL r)  = BOOL $ \t f -> l t (r t f)
+
+----------------------------------------------------------
+-- Type Class Instances
+----------------------------------------------------------
+instance Show BOOL where
+  show (BOOL b) = b "true" "false"
+
+instance Eq BOOL where
+  (BOOL m) == (BOOL n) = twoEq m n
+
+----------------------------------------------------------
+-- Utilities
+----------------------------------------------------------
+toBool :: BOOL -> Bool
+toBool (BOOL b) = b True False
